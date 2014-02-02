@@ -81,6 +81,10 @@
 		class="com.wallet.web.support.UserService">		
 	</bean>	
 	<bean id="expenseService"
-		class="com.wallet.web.support.ExpenseService">		
+		class="com.wallet.web.support.ExpenseService">	
+			<property name="repository" ref="repository" />
+			<property name="dataStoreManager" ref="dataStoreManager" />
+			
+			
 	</bean>	
 </beans>
