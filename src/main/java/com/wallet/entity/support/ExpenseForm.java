@@ -8,9 +8,11 @@ import com.wallet.entity.Expense.ExpenseType;
 
 public class ExpenseForm {
 	
+	public static final String key="expenseForm";
+	
 	private Double spentMoney;
 	private String type;
-	private Date time;
+	private String time;
 	private Long id;	
 	
 	public Long getId() {
@@ -31,11 +33,10 @@ public class ExpenseForm {
 	public void setType(String type) {
 		this.type = type;
 	}
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	public Date getTime() {
+	public String getTime() {
 		return time;
 	}
-	public void setTime(Date time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
 	

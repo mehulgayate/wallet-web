@@ -54,7 +54,7 @@
 		<property name="dataSource" ref="dataSource" />
 
 		<!-- Tells Hibernate where to look for annotation-marked persistent entity objects -->
-		<property name="packagesToScan" value="com.cam.entity" />
+		<property name="packagesToScan" value="com.wallet.entity" />
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.hbm2ddl.auto">${db.hbm2ddl}</prop>
@@ -76,14 +76,20 @@
 		class="com.wallet.entity.support.Repository">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>	
+	<bean id="dateTimeUtil"
+		class="com.wallet.web.support.DateTimeUtil">		
+	</bean>	
 	
 	<bean id="userService"
-		class="com.wallet.web.support.UserService">		
+		class="com.wallet.web.support.UserService">
+		<property name="repository" ref="repository" />
+			<property name="dataStoreManager" ref="dataStoreManager" />		
 	</bean>	
 	<bean id="expenseService"
 		class="com.wallet.web.support.ExpenseService">	
 			<property name="repository" ref="repository" />
 			<property name="dataStoreManager" ref="dataStoreManager" />
+			<property name="dateTimeUtil" ref="dateTimeUtil" />		
 			
 			
 	</bean>	
