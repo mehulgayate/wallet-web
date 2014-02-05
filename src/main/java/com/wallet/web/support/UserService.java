@@ -31,14 +31,14 @@ public class UserService {
 		dataStoreManager.save(user);
 	}
 	
-	public boolean authenticate(String email,String password){
+	public User authenticate(String email,String password){
 		User user=repository.findUserByEmail(email);
 		if(user!=null){
 			if(user.getPassword().equals(password)){
-				return true;
+				return user;
 			}
 		}
-		return false;
+		return null;
 	}
 
 }

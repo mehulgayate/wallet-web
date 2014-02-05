@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.wallet.entity.User;
 import com.wallet.entity.support.UserForm;
 import com.wallet.web.support.UserService;
 
@@ -33,9 +34,11 @@ public class UserController {
 	@RequestMapping("/login")
 	public ModelAndView login(HttpServletRequest request,@RequestParam String email,@RequestParam String password){
 		ModelAndView mv=new ModelAndView("json-string");
-		JSONObject jsonObject=new JSONObject();		
-		if(userService.authenticate(email,password)){
+		JSONObject jsonObject=new JSONObject();	
+		User user=userService.authenticate(email,password);
+		if(user!=null){
 			jsonObject.put("success", "success");
+			jsonObject.put("id", user.getId());
 		}else{
 			jsonObject.put("fail", "fail");
 		}
